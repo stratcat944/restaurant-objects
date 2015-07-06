@@ -1,3 +1,6 @@
+// JS16 Restaurant Objects
+
+
 var FoodItem = function(name, cal, vegan, glutenFree, citrusFree){
 	
 	this.name		= name;
@@ -5,14 +8,17 @@ var FoodItem = function(name, cal, vegan, glutenFree, citrusFree){
 	this.vegan		= vegan;
 	this.glutenFree = glutenFree;
 	this.citrusFree = citrusFree;
+
+
 }
 
-	
-
 	FoodItem.prototype.toString = function(){
-		var menu = "Name: " + this.name + " Calories: " + this.cal + " Vegan: " + this.vegan + " Gluten Free: " + this.glutenFree + " Citrus Free: " + this.citrusFree;
-		return menu;
+			var menu = " Name: " + this.name + " Calories: " + this.cal + " Vegan: " + this.vegan + " Gluten Free: " + this.glutenFree + " Citrus Free: " + this.citrusFree;
+			return menu;
 	}
+
+
+// Food Items
 
 	var burrito = new FoodItem('burrito', 400, false, false, true);
 	var rice = new FoodItem('rice', 120, true, true, true);
@@ -26,9 +32,7 @@ var FoodItem = function(name, cal, vegan, glutenFree, citrusFree){
 	var sweetSour = new FoodItem('sweetSour', 100, true, true, false);
 	var salt = new FoodItem('salt', 0, true, true, true);
 
-// FoodItem.prototype.toString()
-
-
+// Object Classes
 
 var Drink = function(name, description, price, ingredients){
 
@@ -38,6 +42,12 @@ var Drink = function(name, description, price, ingredients){
 	this.ingredients	= ingredients;
 }
 
+	Drink.prototype.toString = function(){
+		var beverage = " Name: " + this.name + " Description: " + this.description + " Price: $" + this.price + " Ingredients: " + this.ingredients;
+		return beverage;
+	}
+
+
 var Plate = function(name, description, price, ingredients){
 
 	this.name 			= name;
@@ -46,13 +56,55 @@ var Plate = function(name, description, price, ingredients){
 	this.ingredients	= ingredients;
 }
 
+	Plate.prototype.toString = function(){
+			var dinner = " Name: " + this.name + " Description: " + this.description + " Price: $" + this.price + " Ingredients: " + this.ingredients;
+			return dinner;
+		}
+
+		Plate.prototype.isVegan = function(){
+			for(var i = 0; i < ingredients.length; i++){
+				if (FoodItem.vegan){
+					return true
+				}
+				else return false
+			}
+		}
+
+		Plate.prototype.isGlutenFree = function(){
+			for(var i = 0; i < ingredients.length; i++){
+				if (FoodItem.glutenFree){
+					return true
+				}
+				else return false
+			}
+		}
+
+		Plate.prototype.isCitrusFree = function(){
+			for(var i = 0; i < ingredients.length; i++){
+				if (FoodItem.citrusFree){
+					return true
+				}
+				else return false
+			}
+		}
+
 var Order = function(plate){
 	this.plate = plate;
 }
 
+	Order.prototype.toString = function(){
+			var ticket = "Your Order: " + this.plate;
+			return ticket;
+		}
+
 var Menu = function(plate){
 	this.plate = plate;
 }
+
+	Menu.prototype.toString = function(){
+			var foodList = "Pick a Plate: " + this.plate;
+			return foodList;
+		}
 
 var Restaurant = function(name, description, menu){
 	this.name 	= name;
@@ -60,76 +112,29 @@ var Restaurant = function(name, description, menu){
 	this.menu = menu;
 }
 
+	Restaurant.prototype.toString = function(){
+		var joint = "Welcome to: " + this.name + " Description: " + this.description + " Menu: " + this.menu;
+		return joint;
+	}
+
 var Customer = function(dietaryPreference){
 	this.dietaryPreference = dietaryPreference;
 }
 
-Drink.prototype.toString = function(){
-		var beverage = "Name: " + this.name + " Description: " + this.description + " Price: " + this.price + " Ingredients: " + this.ingredients;
-			return beverage;
+	Customer.prototype.toString = function(){
+		var person = "Dietary Preference: " + this.dietaryPreference;
+		return person;
 	}
 
-Plate.prototype.toString = function(){
-		var dinner = "Name: " + this.name + " Description: " + this.description + " Price: $" + this.price + " Ingredients: " + this.ingredients;
-		return dinner;
-	}
+var burritoPlate = new Plate('Burrito', 'A delicious burrito! ', 8, [burrito, rice, beans]);
 
-	Plate.prototype.isVegan = function(){
-		for(var i = 0; i < ingredients.length; i++){
-			if (FoodItem.vegan){
-				return true
-			}
-			else return false
-		}
-	}
+var guacamolePlate = new Plate('Guac', 'Green and Good ', 4, [guacamole, cornChips, salsa]);
 
-	Plate.prototype.isGlutenFree = function(){
-		for(var i = 0; i < ingredients.length; i++){
-			if (FoodItem.glutenFree){
-				return true
-			}
-			else return false
-		}
-	}
-
-	Plate.prototype.isCitrusFree = function(){
-		for(var i = 0; i < ingredients.length; i++){
-			if (FoodItem.citrusFree){
-				return true
-			}
-			else return false
-		}
-	}
-
-Order.prototype.toString = function(){
-		var ticket = "Your Order: " + this.plate;
-		return ticket;
-	}
-
-Menu.prototype.toString = function(){
-		var foodList = "Pick a Plate: " + this.plate;
-		return foodList;
-	}
-
-Restaurant.prototype.toString = function(){
-	var joint = "Name of Joint: " + this.name + " Description: " + this.description + " Menu: " + this.menu;
-	return joint;
-}
-
-Customer.prototype.toString = function(){
-	var person = "Dietary Preference: " + this.dietaryPreference;
-	return person;
-}
-
-var burritoPlate = new Plate('Burrito', 'A delicious burrito!', 8, [burrito, rice, beans]);
-
-var guacamolePlate = new Plate('Guac', 'green and good', 4, [guacamole, cornChips, salsa]);
-
-var margaritaDrink = new Drink('Margarita', 'top shelf', 12, [tequila, sweetSour, salt]);
+var margaritaDrink = new Drink('Margarita', 'Top Shelf ', 12, [tequila, sweetSour, salt]);
 
 var MexMenu = new Menu([burritoPlate, guacamolePlate, margaritaDrink]);
 
-var MexRestaurant = new Restaurant('BoCoMex', 'The worst Mexican food in Colorado!', MexMenu);
+var MexRestaurant = new Restaurant('BoCoMex ', 'The worst Mexican food in Colorado!', MexMenu);
 
 console.log(MexRestaurant.toString());
 
