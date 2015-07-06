@@ -11,16 +11,23 @@ var FoodItem = function(name, cal, vegan, glutenFree, citrusFree){
 
 	FoodItem.prototype.toString = function(){
 		var menu = "Name: " + this.name + " Calories: " + this.cal + " Vegan: " + this.vegan + " Gluten Free: " + this.glutenFree + " Citrus Free: " + this.citrusFree;
+		return menu;
 	}
 
-	var BucketOCat = new FoodItem('Fifi', 235, false, true, false);
-	var roadKillSpecial = new FoodItem('Squirrel', 120, false, true, true);
-	var vegetarianNightmare = new FoodItem('CabbagePatchKid', 500, true, false, false);
+	var burrito = new FoodItem('burrito', 400, false, false, true);
+	var rice = new FoodItem('rice', 120, true, true, true);
+	var beans = new FoodItem('beans', 300, true, true, true);
+
+	var guacamole = new FoodItem('guacamole', 400, true, true, false);
+	var cornChips = new FoodItem('cornChips', 300, true, true, true);
+	var salsa = new FoodItem('salsa', 200, true, true, false);
+
+	var tequila = new FoodItem('tequila', 200, true, true, true);
+	var sweetSour = new FoodItem('sweetSour', 100, true, true, false);
+	var salt = new FoodItem('salt', 0, true, true, true);
 
 // FoodItem.prototype.toString()
-	console.log(BucketOCat);
-	console.log(roadKillSpecial);
-	console.log(vegetarianNightmare);
+
 
 
 var Drink = function(name, description, price, ingredients){
@@ -59,10 +66,12 @@ var Customer = function(dietaryPreference){
 
 Drink.prototype.toString = function(){
 		var beverage = "Name: " + this.name + " Description: " + this.description + " Price: " + this.price + " Ingredients: " + this.ingredients;
+			return beverage;
 	}
 
 Plate.prototype.toString = function(){
-		var dinner = "Name: " + this.name + " Description: " + this.description + " Price: " + this.price + " Ingredients: " + this.ingredients;
+		var dinner = "Name: " + this.name + " Description: " + this.description + " Price: $" + this.price + " Ingredients: " + this.ingredients;
+		return dinner;
 	}
 
 	Plate.prototype.isVegan = function(){
@@ -94,23 +103,34 @@ Plate.prototype.toString = function(){
 
 Order.prototype.toString = function(){
 		var ticket = "Your Order: " + this.plate;
+		return ticket;
 	}
 
 Menu.prototype.toString = function(){
 		var foodList = "Pick a Plate: " + this.plate;
+		return foodList;
 	}
 
 Restaurant.prototype.toString = function(){
 	var joint = "Name of Joint: " + this.name + " Description: " + this.description + " Menu: " + this.menu;
+	return joint;
 }
 
 Customer.prototype.toString = function(){
 	var person = "Dietary Preference: " + this.dietaryPreference;
+	return person;
 }
 
+var burritoPlate = new Plate('Burrito', 'A delicious burrito!', 8, [burrito, rice, beans]);
 
+var guacamolePlate = new Plate('Guac', 'green and good', 4, [guacamole, cornChips, salsa]);
 
+var margaritaDrink = new Drink('Margarita', 'top shelf', 12, [tequila, sweetSour, salt]);
 
+var MexMenu = new Menu([burritoPlate, guacamolePlate, margaritaDrink]);
 
+var MexRestaurant = new Restaurant('BoCoMex', 'The worst Mexican food in Colorado!', MexMenu);
+
+console.log(MexRestaurant.toString());
 
 
