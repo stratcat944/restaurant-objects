@@ -1,5 +1,7 @@
 // JS16 Restaurant Objects
 
+$(document).on('ready', function() {
+
 
 var FoodItem = function(name, cal, vegan, glutenFree, citrusFree){
 	
@@ -138,4 +140,4 @@ var MexRestaurant = new Restaurant('BoCoMex ', 'The worst Mexican food in Colora
 
 console.log(MexRestaurant.toString());
 
-
+});
